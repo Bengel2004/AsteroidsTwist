@@ -119,8 +119,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   damage: 3
-  destroyParticleObj: {fileID: 1376891811349303305, guid: 1284ab32d7487f04f9a64a31dd4f8346,
-    type: 3}
+  destroyInstObjects:
+  - {fileID: 1376891811349303305, guid: 1284ab32d7487f04f9a64a31dd4f8346, type: 3}
+  typeOfEntity: 0
 --- !u!114 &7951608012734726330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1155
+  useRandomSpeed: 1
 --- !u!58 &4302560242257726341
 CircleCollider2D:
   m_ObjectHideFlags: 0
