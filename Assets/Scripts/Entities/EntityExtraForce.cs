@@ -15,7 +15,7 @@ public class EntityExtraForce : Entity
             _tempEntity.DamageEntity(damage);
 
             Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
-            if(rb != null)
+            if(rb != null && rb.transform.name != "Player")
             {
                 Vector2 _Vector = new Vector2();
                 _Vector = (col.transform.position - transform.position);
