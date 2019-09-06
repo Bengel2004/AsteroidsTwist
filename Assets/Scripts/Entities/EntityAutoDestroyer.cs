@@ -18,4 +18,9 @@ public class EntityAutoDestroyer : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         Destroy(this.gameObject);
     }
+
+    private void OnDisable()
+    {
+        Destroy(this.gameObject);
+    }
 }

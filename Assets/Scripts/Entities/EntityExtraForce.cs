@@ -21,7 +21,7 @@ public class EntityExtraForce : Entity
                 _Vector = (col.transform.position - transform.position);
                 _Vector = _Vector * 5000f;
                 Debug.Log(_Vector);
-                rb.AddForce(_Vector);
+                rb.AddRelativeForce(_Vector);
             }
         }
         Destroy(this.gameObject);

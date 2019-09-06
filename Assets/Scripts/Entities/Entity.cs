@@ -5,14 +5,14 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     [SerializeField]
-    private float health;
+    protected float health;
     public float damage;
     [SerializeField]
-    private GameObject[] destroyInstObjects;
+    protected GameObject[] destroyInstObjects;
     [SerializeField]
-    private EntityType typeOfEntity;
+    protected EntityType typeOfEntity;
 
-    private EntityType lastCollidedType;
+    protected EntityType lastCollidedType;
 
     public void DamageEntity(float damagePoints)
     {
@@ -34,16 +34,26 @@ public class Entity : MonoBehaviour
     }
 
     // Spawns particles on destruction and adds score if object is asteroid
-    private void OnDestroy()
+    private void OnDisable()
     {
         foreach(GameObject _intObject in destroyInstObjects)
         {
             Instantiate(_intObject, transform.position, transform.rotation);
         }
 
-        if (typeOfEntity == EntityType.Asteroid && lastCollidedType != EntityType.Asteroid)
+        if (lastCollidedType != EntityType.Asteroid)
         {
-            ScoreManager.Instance.addPoint();
+            switch (typeOfEntity)
+            {
+                case EntityType.Asteroid:
+                    ScoreManager.Instance.addPoint(1f);
+                    break;
+                case EntityType.LargeAsteroid:
+                    ScoreManager.Instance.addPoint(2f);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
@@ -52,6 +62,7 @@ public class Entity : MonoBehaviour
 public enum EntityType
 {
     Asteroid,
+    LargeAsteroid,
     Projectile,
     Player
 }

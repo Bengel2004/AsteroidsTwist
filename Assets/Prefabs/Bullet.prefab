@@ -148,7 +148,7 @@ MonoBehaviour:
   damage: 1
   destroyInstObjects:
   - {fileID: 1376891811349303305, guid: 1284ab32d7487f04f9a64a31dd4f8346, type: 3}
-  typeOfEntity: 1
+  typeOfEntity: 2
 --- !u!114 &1011762369768029928
 MonoBehaviour:
   m_ObjectHideFlags: 0
