@@ -28,6 +28,7 @@ public class Entity : MonoBehaviour
         if (collision.transform.gameObject)
         { 
             Entity _tempEntity = collision.transform.gameObject.GetComponent<Entity>();
+      //      _tempEntity?.health = health;
             lastCollidedType = _tempEntity.typeOfEntity;
             DamageEntity(_tempEntity.damage);
         }
@@ -36,23 +37,26 @@ public class Entity : MonoBehaviour
     // Spawns particles on destruction and adds score if object is asteroid
     private void OnDisable()
     {
-        foreach(GameObject _intObject in destroyInstObjects)
+        if (health <= 0)
         {
-            Instantiate(_intObject, transform.position, transform.rotation);
-        }
-
-        if (lastCollidedType != EntityType.Asteroid)
-        {
-            switch (typeOfEntity)
+            foreach (GameObject _intObject in destroyInstObjects)
             {
-                case EntityType.Asteroid:
-                    ScoreManager.Instance.addPoint(1f);
-                    break;
-                case EntityType.LargeAsteroid:
-                    ScoreManager.Instance.addPoint(2f);
-                    break;
-                default:
-                    break;
+                Instantiate(_intObject, transform.position, transform.rotation);
+            }
+
+            if (lastCollidedType != EntityType.Asteroid && lastCollidedType != EntityType.LargeAsteroid)
+            {
+                switch (typeOfEntity)
+                {
+                    case EntityType.Asteroid:
+                        ScoreManager.Instance.addPoint(1f);
+                        break;
+                    case EntityType.LargeAsteroid:
+                        ScoreManager.Instance.addPoint(2f);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
