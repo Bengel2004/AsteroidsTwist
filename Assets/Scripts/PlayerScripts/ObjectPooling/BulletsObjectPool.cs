@@ -55,7 +55,6 @@ public class BulletsObjectPool : MonoBehaviour
 
     private void Spawn()
     {
-        Debug.Log("TEST");
         GameObject obj = Object.Instantiate(prefabs[spawnIndex]);
         obj.SetActive(false);
         pool[spawnIndex].bullets.Add(obj);

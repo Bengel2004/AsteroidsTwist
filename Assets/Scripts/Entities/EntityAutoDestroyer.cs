@@ -8,7 +8,7 @@ public class EntityAutoDestroyer : MonoBehaviour
     private float destroyTime;
 
     // script that destroys the entity after a specific amount of time after spawning
-    private void Start()
+    private void OnEnable()
     { 
         StartCoroutine(DestroyObj(destroyTime));
     }
