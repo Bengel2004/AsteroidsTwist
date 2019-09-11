@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour, IPickable
 {
-    public void PickItem()
+    private float metal;
+    [SerializeField]
+    private Vector2 MinMaxValue;
+
+    public float PickItem()
     {
         Destroy(this.gameObject);
+        return metal;
+    }
+
+    private void Start()
+    {
+        metal = Random.Range(MinMaxValue.x, MinMaxValue.y);
     }
 }

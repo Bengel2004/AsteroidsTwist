@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerLeveler : MonoBehaviour
 {
+    public float GetScrap { get { return scrap; } }
     [SerializeField]
     private Sprite[] levelSprites;
     [SerializeField]
@@ -13,8 +14,7 @@ public class PlayerLeveler : MonoBehaviour
     [SerializeField]
     private int levelSpriteChangeModifier;
 
-    private int scrap;
-
+    private float scrap;
     private PlayerFire playerGunner;
 
     // Manages the current sprite progress of the player
@@ -25,8 +25,7 @@ public class PlayerLeveler : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(scrap);
-        int _tempValue = Mathf.RoundToInt(ScoreManager.Instance.getPoints());
+        int _tempValue = Mathf.RoundToInt(scrap);
         _tempValue = _tempValue / levelSpriteChangeModifier;
         if (playerSpriteRenderer.sprite != levelSprites[_tempValue] && _tempValue < levelSprites.Length)
         {
@@ -35,7 +34,7 @@ public class PlayerLeveler : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         //float flap = scrap == 1 ? 0 : (true ? 1 : 2);
         //if (scrap == 1)
@@ -53,6 +52,7 @@ public class PlayerLeveler : MonoBehaviour
         //    }
         //}
         IPickable _tempPick = collision.gameObject.GetComponent<IPickable>();
-        _tempPick?.PickItem();
+        if (_tempPick != null)
+            scrap = Mathf.Round(scrap + _tempPick.PickItem());
     }
 }

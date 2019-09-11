@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    public float GetHealth
+    {
+        get { return health; }
+    }
+    public float damage;
     [SerializeField]
     protected float health;
-    public float damage;
     [SerializeField]
     protected GameObject[] destroyInstObjects;
     [SerializeField]
@@ -28,9 +32,12 @@ public class Entity : MonoBehaviour
         if (collision.transform.gameObject)
         { 
             Entity _tempEntity = collision.transform.gameObject.GetComponent<Entity>();
-      //      _tempEntity?.health = health;
-            lastCollidedType = _tempEntity.typeOfEntity;
-            DamageEntity(_tempEntity.damage);
+            //      _tempEntity?.health = health;
+            if (_tempEntity != null)
+            {
+                lastCollidedType = _tempEntity.typeOfEntity;
+                DamageEntity(_tempEntity.damage);
+            }
         }
     }
 

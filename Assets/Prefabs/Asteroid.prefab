@@ -117,10 +117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8660245d0a7ae4b9afeabe115fcfc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
   damage: 3
+  health: 3
   destroyInstObjects:
   - {fileID: 1376891811349303305, guid: 1284ab32d7487f04f9a64a31dd4f8346, type: 3}
+  - {fileID: 7066252312250069133, guid: f4ce5a08040ef7f48a77365cbf8f909a, type: 3}
   typeOfEntity: 0
 --- !u!114 &7951608012734726330
 MonoBehaviour:
