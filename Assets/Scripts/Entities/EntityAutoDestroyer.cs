@@ -16,11 +16,6 @@ public class EntityAutoDestroyer : MonoBehaviour
     IEnumerator DestroyObj(float waitTime)
     { 
         yield return new WaitForSeconds(waitTime);
-        Destroy(this.gameObject);
-    }
-
-    private void OnDisable()
-    {
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
 }
