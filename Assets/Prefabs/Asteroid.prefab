@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7951608012734726324}
   - component: {fileID: 7951608012734726327}
   - component: {fileID: 7951608012734726331}
-  - component: {fileID: 7951608012734726326}
+  - component: {fileID: 3247522149741048295}
   - component: {fileID: 7951608012734726330}
   - component: {fileID: 4302560242257726341}
   m_Layer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e7e64f1d79baf8e4d9788e774f71a5b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -105,7 +105,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7951608012734726326
+--- !u!114 &3247522149741048295
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,14 +114,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7951608012734726321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8660245d0a7ae4b9afeabe115fcfc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0fa335ba1d88e4b4782cd95484af434d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
   health: 3
-  destroyInstObjects:
-  - {fileID: 1376891811349303305, guid: 1284ab32d7487f04f9a64a31dd4f8346, type: 3}
-  - {fileID: 7066252312250069133, guid: f4ce5a08040ef7f48a77365cbf8f909a, type: 3}
   typeOfEntity: 0
 --- !u!114 &7951608012734726330
 MonoBehaviour:

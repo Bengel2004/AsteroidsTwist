@@ -13,7 +13,7 @@ public class EntityAutoDestroyer : MonoBehaviour
         StartCoroutine(DestroyObj(destroyTime));
     }
 
-    IEnumerator DestroyObj(float waitTime)
+    private IEnumerator DestroyObj(float waitTime)
     { 
         yield return new WaitForSeconds(waitTime);
         gameObject.SetActive(false);

@@ -120,6 +120,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &7755012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7755014}
+  - component: {fileID: 7755013}
+  m_Layer: 0
+  m_Name: SmokePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &7755013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7755012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 167ddd9e5cb390b4cb980ce4e075d788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pool: []
+  prefabs:
+  - {fileID: 1376891811349303305, guid: 1284ab32d7487f04f9a64a31dd4f8346, type: 3}
+  size: 120
+--- !u!4 &7755014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7755012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &167067421
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +323,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &455412221
 MonoBehaviour:
@@ -303,7 +350,7 @@ GameObject:
   - component: {fileID: 508244095}
   - component: {fileID: 508244097}
   m_Layer: 0
-  m_Name: AsteroidSpawner
+  m_Name: AsteroidSpawnerPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -321,9 +368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7906813402d2742801addbabb7478a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroids:
-  - {fileID: 7951608012734726321, guid: b196c86309a5b604eb108daa8d79b1ad, type: 3}
-  - {fileID: 3318539492179750578, guid: 2f5156ae08f7bae47a595d11cc3bac77, type: 3}
   spawnTime: 0.5
 --- !u!4 &508244096
 Transform:
@@ -333,11 +377,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 508244094}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3755624, y: 5.07, z: -14.112553}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &508244097
 MonoBehaviour:
@@ -515,8 +559,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   health: 30
-  destroyInstObjects:
-  - {fileID: 1376891811349303305, guid: 1284ab32d7487f04f9a64a31dd4f8346, type: 3}
   typeOfEntity: 3
 --- !u!114 &536299906
 MonoBehaviour:
@@ -571,8 +613,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chosenWeapon: {fileID: 11400000, guid: fd5d76c2bd79dce4a9facefd079cbfb6, type: 2}
-  bulletSpawnPosition: {fileID: 1391634828}
   bulletPool: {fileID: 642259402}
+  bulletSpawnPosition: {fileID: 1391634828}
 --- !u!61 &536299909
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -693,7 +735,7 @@ Transform:
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &642259401
 GameObject:
@@ -1204,7 +1246,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 67298722f82674f4bb540646cd2fc682, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1340,7 +1382,7 @@ RectTransform:
   - {fileID: 991552168}
   - {fileID: 710752605}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1694,6 +1736,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2040300584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2040300586}
+  - component: {fileID: 2040300585}
+  m_Layer: 0
+  m_Name: scrapPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2040300585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040300584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 167ddd9e5cb390b4cb980ce4e075d788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pool: []
+  prefabs:
+  - {fileID: 7066252312250069133, guid: f4ce5a08040ef7f48a77365cbf8f909a, type: 3}
+  - {fileID: 7066252312250069133, guid: cbfb197a0cc9d38449830708f6611dc1, type: 3}
+  size: 60
+--- !u!4 &2040300586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040300584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2127207195
 GameObject:
   m_ObjectHideFlags: 0

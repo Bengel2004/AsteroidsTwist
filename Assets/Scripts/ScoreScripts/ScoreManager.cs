@@ -5,9 +5,8 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
-    private float scorePoints;
     public float currentHighScore;
-
+    private float scorePoints;
 
     public void OnEnable()
     {

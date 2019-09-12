@@ -12,11 +12,10 @@ public class Entity : MonoBehaviour
     [SerializeField]
     protected float health;
     [SerializeField]
-    protected GameObject[] destroyInstObjects;
-    [SerializeField]
     protected EntityType typeOfEntity;
-
     protected EntityType lastCollidedType;
+
+    protected ObjectPooler SmokePool;
 
     // checks if entity is damaged
     public virtual void DamageEntity(float damagePoints)
@@ -26,6 +25,11 @@ public class Entity : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    protected virtual void Awake()
+    {
+        SmokePool = GameObject.Find("SmokePool").GetComponent<ObjectPooler>();
     }
 
     // Detects colission with objects
@@ -48,26 +52,13 @@ public class Entity : MonoBehaviour
     {
         if (health <= 0)
         {
-            foreach (GameObject _intObject in destroyInstObjects)
-            {
-                Instantiate(_intObject, transform.position, transform.rotation);
-            }
-
-            if (lastCollidedType != EntityType.Asteroid && lastCollidedType != EntityType.LargeAsteroid)
-            {
-                switch (typeOfEntity)
-                {
-                    case EntityType.Asteroid:
-                        ScoreManager.Instance.addPoint(1f);
-                        break;
-                    case EntityType.LargeAsteroid:
-                        ScoreManager.Instance.addPoint(2f);
-                        break;
-                    default:
-                        break;
-                }
-            }
+            OnDeath();
         }
+    }
+
+    protected virtual void OnDeath()
+    {
+        SmokePool.GetNext(0, transform.position, transform.rotation);
     }
 }
 

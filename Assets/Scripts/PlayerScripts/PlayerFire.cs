@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerFire : MonoBehaviour
 {
     public Weapon chosenWeapon;
+    public ObjectPooler bulletPool;
+
     private float timestamp = 0.0f;
     [SerializeField]
     private Transform bulletSpawnPosition;
-    public ObjectPooler bulletPool;
 
     private void Start()
     {
