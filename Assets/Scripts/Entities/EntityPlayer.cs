@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EntityPlayer : Entity
 {
-    public void OnDeath()
+    protected override void OnDeath()
     {
+        base.OnDeath();
         GameManager.OnReset();
     }
 

@@ -10,24 +10,6 @@ public class EntityMotion : MonoBehaviour
     [SerializeField]
     private bool useRandomSpeed;
 
-    // adds motion to the entity on Instantiation
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void OnEnable()
-    {
-        ApplyForwardForce();
-    }
-
-    private void OnDisable()
-    {
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
-        Debug.Log(rb.velocity);
-    }
-
     public void ApplyForwardForce()
     {
         if (useRandomSpeed)
@@ -47,4 +29,23 @@ public class EntityMotion : MonoBehaviour
     {
         rb.AddRelativeForce(new Vector2(0, speed));
     }
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    // adds motion to the entity on Enable
+    private void OnEnable()
+    {
+        ApplyForwardForce();
+    }
+
+    private void OnDisable()
+    {
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+    }
+
+
 }

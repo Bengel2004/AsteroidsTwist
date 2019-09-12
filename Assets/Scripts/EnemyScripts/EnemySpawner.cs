@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     private float timestamp = 0.0f;
     private Transform thePlayer;
     private ObjectPooler asteroidSpawnPool;
-    private const int largeAsteroidSpawnChance = 20; // 20%
+    const int LARGEASTEROIDSPAWNCHANCE = 20; // 20%
 
     private void Start()
     { 
@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
             Quaternion _tempRot = Quaternion.AngleAxis(_angle, Vector3.forward);
 
             // Spawns large asteroid when the % is smaller than 20, if percentage is larger than 20 then spawn small asteroid
-            int _randomInt = Random.Range(0, 100) < largeAsteroidSpawnChance ? 1 : 0;
+            int _randomInt = Random.Range(0, 100) < LARGEASTEROIDSPAWNCHANCE ? 1 : 0;
             //if(_randomInt < 20)
             //{
             //    _chosenInt = 1;

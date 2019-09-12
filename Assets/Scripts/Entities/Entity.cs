@@ -32,6 +32,11 @@ public class Entity : MonoBehaviour
         SmokePool = GameObject.Find("SmokePool").GetComponent<ObjectPooler>();
     }
 
+    protected virtual void OnDeath()
+    {
+        SmokePool.GetNext(0, transform.position, transform.rotation);
+    }
+
     // Detects colission with objects
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -56,10 +61,7 @@ public class Entity : MonoBehaviour
         }
     }
 
-    protected virtual void OnDeath()
-    {
-        SmokePool.GetNext(0, transform.position, transform.rotation);
-    }
+
 }
 
 
