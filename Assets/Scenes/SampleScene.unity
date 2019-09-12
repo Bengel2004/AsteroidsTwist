@@ -583,7 +583,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 87204e1ce80b35e43b5c984287095c85, type: 2}
   - {fileID: 11400000, guid: bf4cd4bd1beb5e04da85e510785ff455, type: 2}
   playerSpriteRenderer: {fileID: 1390882037}
-  levelSpriteChangeModifier: 30
+  levelSpriteChangeModifier: 100
 --- !u!4 &536299907
 Transform:
   m_ObjectHideFlags: 0

@@ -24,7 +24,7 @@ public class EntityExtraForce : Entity
                 rb.AddRelativeForce(_Vector);
             }
         }
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
         
     }
 }

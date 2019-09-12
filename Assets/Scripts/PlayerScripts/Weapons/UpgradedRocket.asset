@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: UpgradedRocket
   m_EditorClassIdentifier: 
   weaponName: Bullet
-  rateOfFire: 10
+  rateOfFire: 25
   weaponEntity: {fileID: 2281623987944700680, guid: d5be5ab49cadbf84e8779f42187b9d0c,
     type: 3}

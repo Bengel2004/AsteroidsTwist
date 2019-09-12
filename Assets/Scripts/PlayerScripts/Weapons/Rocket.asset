@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Rocket
   m_EditorClassIdentifier: 
   weaponName: Bullet
-  rateOfFire: 10
+  rateOfFire: 15
   weaponEntity: {fileID: 1272178671165364132, guid: c8a11c48cb7dc4c4caa7c7e28dd48ec5,
     type: 3}
