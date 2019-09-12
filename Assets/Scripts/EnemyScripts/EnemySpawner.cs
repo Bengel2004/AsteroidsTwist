@@ -10,11 +10,13 @@ public class EnemySpawner : MonoBehaviour
     private float spawnTime;
     private float timestamp = 0.0f;
     private Transform thePlayer;
+    private ObjectPooler asteroidSpawnPool;
 
     private void Start()
     { 
         timestamp = Time.time + 0.0f;
         thePlayer = GameObject.Find("Player").transform;
+        asteroidSpawnPool = GetComponent<ObjectPooler>();
     }
 
     private void Update()
@@ -45,7 +47,8 @@ public class EnemySpawner : MonoBehaviour
             //    _chosenInt = 0;
             //}
 
-            GameObject _tempAsteroid = Instantiate(asteroids[_randomInt], _spawnPoint, _tempRot);
+            asteroidSpawnPool.GetNext(_randomInt, _spawnPoint, _tempRot);
+          //  GameObject _tempAsteroid = Instantiate(asteroids[_randomInt], _spawnPoint, _tempRot);
 
             timestamp = Time.time + spawnTime;
         }

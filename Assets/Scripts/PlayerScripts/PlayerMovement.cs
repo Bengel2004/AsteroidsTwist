@@ -14,11 +14,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private GameObject[] thrusters;
 
-    public void OnDeath()
-    {
-        GameManager.OnReset();
-    }
-
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -49,10 +44,5 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate() {
         Vector2 _tempSpeed = new Vector2(0f, (Input.GetAxis("Vertical") * movementSpeed));
         rb.AddRelativeForce(_tempSpeed);
-    }
-
-    private void OnDisable()
-    {
-        OnDeath();
     }
 }

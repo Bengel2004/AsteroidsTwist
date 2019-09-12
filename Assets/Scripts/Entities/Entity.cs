@@ -18,14 +18,16 @@ public class Entity : MonoBehaviour
 
     protected EntityType lastCollidedType;
 
-    public void DamageEntity(float damagePoints)
+    // checks if entity is damaged
+    public virtual void DamageEntity(float damagePoints)
     {
         health -= damagePoints;
         if(health <= 0)
         {
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
     }
+
     // Detects colission with objects
     private void OnCollisionEnter2D(Collision2D collision)
     {

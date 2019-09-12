@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 455412220}
   - component: {fileID: 455412219}
   - component: {fileID: 455412218}
+  - component: {fileID: 455412221}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -277,6 +278,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &455412221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455412217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54caac36c54faf40a07b7e839346344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHighScore: 0
 --- !u!1 &508244094
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +303,7 @@ GameObject:
   - component: {fileID: 508244095}
   - component: {fileID: 508244097}
   m_Layer: 0
-  m_Name: Scripts
+  m_Name: AsteroidSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,10 +348,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 508244094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c54caac36c54faf40a07b7e839346344, type: 3}
+  m_Script: {fileID: 11500000, guid: 167ddd9e5cb390b4cb980ce4e075d788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highScore: 0
+  pool: []
+  prefabs:
+  - {fileID: 7951608012734726321, guid: b196c86309a5b604eb108daa8d79b1ad, type: 3}
+  - {fileID: 3318539492179750578, guid: 2f5156ae08f7bae47a595d11cc3bac77, type: 3}
+  size: 30
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,12 +449,12 @@ GameObject:
   m_Component:
   - component: {fileID: 536299907}
   - component: {fileID: 536299903}
+  - component: {fileID: 536299909}
+  - component: {fileID: 536299910}
   - component: {fileID: 536299905}
   - component: {fileID: 536299904}
   - component: {fileID: 536299908}
-  - component: {fileID: 536299909}
   - component: {fileID: 536299906}
-  - component: {fileID: 536299910}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -492,14 +510,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 536299902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8660245d0a7ae4b9afeabe115fcfc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4212caf82e5ff684499cc713fc35a4fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
   health: 30
   destroyInstObjects:
   - {fileID: 1376891811349303305, guid: 1284ab32d7487f04f9a64a31dd4f8346, type: 3}
-  typeOfEntity: 2
+  typeOfEntity: 3
 --- !u!114 &536299906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,17 +535,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3786496843ac6f14eb7b73667d19565a, type: 3}
   - {fileID: 21300000, guid: 344515d6b5361724895433e2cad52495, type: 3}
   - {fileID: 21300000, guid: 93cc2712d646e3f42a0478e923e71c34, type: 3}
-  - {fileID: 21300000, guid: 77e340a0a6c3ff4428d56dd641351d91, type: 3}
-  - {fileID: 21300000, guid: 89c02a04cb02fb046b90b5edae541fb9, type: 3}
   allWeapons:
   - {fileID: 11400000, guid: fd5d76c2bd79dce4a9facefd079cbfb6, type: 2}
   - {fileID: 11400000, guid: fca006b330b6bc04998dad3837870485, type: 2}
   - {fileID: 11400000, guid: 87204e1ce80b35e43b5c984287095c85, type: 2}
   - {fileID: 11400000, guid: bf4cd4bd1beb5e04da85e510785ff455, type: 2}
-  - {fileID: 11400000, guid: bf4cd4bd1beb5e04da85e510785ff455, type: 2}
-  - {fileID: 11400000, guid: bf4cd4bd1beb5e04da85e510785ff455, type: 2}
   playerSpriteRenderer: {fileID: 1390882037}
-  levelSpriteChangeModifier: 10
+  levelSpriteChangeModifier: 30
 --- !u!4 &536299907
 Transform:
   m_ObjectHideFlags: 0
@@ -692,7 +706,7 @@ GameObject:
   - component: {fileID: 642259403}
   - component: {fileID: 642259402}
   m_Layer: 0
-  m_Name: ObjectPools
+  m_Name: BulletObjectPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -716,7 +730,7 @@ MonoBehaviour:
   - {fileID: 1011762369768029943, guid: 577e21e48b1361247b43b20ed9455df0, type: 3}
   - {fileID: 1272178671165364132, guid: c8a11c48cb7dc4c4caa7c7e28dd48ec5, type: 3}
   - {fileID: 2281623987944700680, guid: d5be5ab49cadbf84e8779f42187b9d0c, type: 3}
-  size: 15
+  size: 50
 --- !u!4 &642259403
 Transform:
   m_ObjectHideFlags: 0
@@ -725,7 +739,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642259401}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7443845, y: -0.7874176, z: -21.275051}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -962,7 +976,7 @@ GameObject:
   - component: {fileID: 1126122260}
   - component: {fileID: 1126122259}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1346,7 +1360,7 @@ GameObject:
   - component: {fileID: 1531181437}
   - component: {fileID: 1531181436}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

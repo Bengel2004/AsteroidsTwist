@@ -25,32 +25,20 @@ public class PlayerLeveler : MonoBehaviour
 
     private void Update()
     {
-        int _tempValue = Mathf.RoundToInt(scrap);
-        _tempValue = _tempValue / levelSpriteChangeModifier;
-        if (playerSpriteRenderer.sprite != levelSprites[_tempValue] && _tempValue < levelSprites.Length)
+        // checks the current "level" of the player based on the amount of scrap he has collected
+        int _tempFloat = Mathf.RoundToInt(scrap);
+        _tempFloat = _tempFloat / levelSpriteChangeModifier;
+        
+        GameManager.playerLevel = _tempFloat < levelSprites.Length ? _tempFloat : (levelSprites.Length - 1);
+        if (playerSpriteRenderer.sprite != levelSprites[GameManager.playerLevel] && GameManager.playerLevel < levelSprites.Length)
         {
-            playerSpriteRenderer.sprite = levelSprites[_tempValue];
-            playerGunner.chosenWeapon = allWeapons[_tempValue];
+            playerSpriteRenderer.sprite = levelSprites[GameManager.playerLevel];
+            playerGunner.chosenWeapon = allWeapons[GameManager.playerLevel];
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //float flap = scrap == 1 ? 0 : (true ? 1 : 2);
-        //if (scrap == 1)
-        //{
-        //    flap = 0;
-        //} else {
-        //    if (true)
-        //    {
-        //        flap = 1;
-
-        //    }
-        //    else
-        //    {
-        //        flap = 2;
-        //    }
-        //}
         IPickable _tempPick = collision.gameObject.GetComponent<IPickable>();
         if (_tempPick != null)
             scrap = Mathf.Round(scrap + _tempPick.PickItem());

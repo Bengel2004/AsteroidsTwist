@@ -8,7 +8,7 @@ public class PlayerFire : MonoBehaviour
     private float timestamp = 0.0f;
     [SerializeField]
     private Transform bulletSpawnPosition;
-    public BulletsObjectPool bulletPool;
+    public ObjectPooler bulletPool;
 
     private void Start()
     {
@@ -21,7 +21,7 @@ public class PlayerFire : MonoBehaviour
         {
             if (Time.time > timestamp)
             {
-                Fire(0);
+                Fire(GameManager.playerLevel);
             }
         }
     }
@@ -29,11 +29,7 @@ public class PlayerFire : MonoBehaviour
     // Fires weapon
     private void Fire(int _level)
     { 
-        timestamp = Time.time + (chosenWeapon.rateOfFire / 60);
-        GameObject _tempBullet = bulletPool.GetNext(_level);
-        _tempBullet.transform.position = bulletSpawnPosition.position;
-        _tempBullet.transform.rotation = bulletSpawnPosition.rotation;
-        _tempBullet.GetComponent<EntityMotion>().ApplyForwardForce();
-        //GameObject _tempBullet = Instantiate(chosenWeapon.weaponEntity, bulletSpawnPosition.position, bulletSpawnPosition.rotation);
+        timestamp = Time.time + (chosenWeapon.rateOfFire / 60); // 60 seconds
+        GameObject _tempBullet = bulletPool.GetNext(_level, bulletSpawnPosition.position, bulletSpawnPosition.rotation);
     }
 }

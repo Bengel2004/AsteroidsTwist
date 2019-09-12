@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletsObjectPool : MonoBehaviour
+public class ObjectPooler : MonoBehaviour
 {
 
     [SerializeField]
-    private List<Bullets> pool;
+    private List<NestedPool> pool;
 
     [SerializeField]
     private GameObject[] prefabs;
@@ -19,10 +19,10 @@ public class BulletsObjectPool : MonoBehaviour
 
     private void Start()
     {
-        pool = new List<Bullets>(4);
+        pool = new List<NestedPool>(4);
         foreach (GameObject prefab in prefabs)
         {
-            Bullets _temp = new Bullets();
+            NestedPool _temp = new NestedPool();
             pool.Add(_temp);
         }
 
@@ -35,7 +35,7 @@ public class BulletsObjectPool : MonoBehaviour
     {
         foreach (GameObject prefab in prefabs) {
 
-            pool[spawnIndex].bullets = new List<GameObject>(size);
+            pool[spawnIndex].nesting = new List<GameObject>(size);
             for (int i = 0; i < size; ++i)
             {
                 Spawn();
@@ -45,11 +45,14 @@ public class BulletsObjectPool : MonoBehaviour
         }
     }
 
-    public GameObject GetNext(int _level)
+    public GameObject GetNext(int _value, Vector3 _position, Quaternion _rotation)
     {
-        GameObject obj = pool[_level].bullets[currentIndex];
-        currentIndex = ++currentIndex % pool[_level].bullets.Count;
+        GameObject obj = pool[_value].nesting[currentIndex];
+        currentIndex = ++currentIndex % pool[_value].nesting.Count;
         obj.SetActive(true);
+        // rotates obj items according to the pool
+        obj.transform.position =  _position;
+        obj.transform.rotation =  _rotation;
         return obj;
     }
 
@@ -57,11 +60,12 @@ public class BulletsObjectPool : MonoBehaviour
     {
         GameObject obj = Object.Instantiate(prefabs[spawnIndex]);
         obj.SetActive(false);
-        pool[spawnIndex].bullets.Add(obj);
+        obj.transform.SetParent(transform);
+        pool[spawnIndex].nesting.Add(obj);
     }
 }
 [System.Serializable]
-public class Bullets
+public class NestedPool
 {
-    public List<GameObject> bullets;
+    public List<GameObject> nesting;
 }

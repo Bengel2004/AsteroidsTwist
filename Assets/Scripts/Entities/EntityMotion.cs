@@ -30,14 +30,21 @@ public class EntityMotion : MonoBehaviour
 
     public void ApplyForwardForce()
     {
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
         if (useRandomSpeed)
         {
             float _randomSpeed = Random.Range(1150, 2000);
             _randomSpeed = Mathf.Round((_randomSpeed / 100)) * 100;
             speed = _randomSpeed;
         }
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+
+        // Small delay to prevent code execution bug
+        Invoke("AddForce", .02f);
+    }
+
+    public void AddForce()
+    {
         rb.AddRelativeForce(new Vector2(0, speed));
     }
 }

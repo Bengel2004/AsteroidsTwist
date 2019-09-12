@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public SceneLoader SceneManager;
 
+    public static int playerLevel;
     public static System.Action endGameSystems;
 
     public static void OnReset()
@@ -13,11 +14,6 @@ public class GameManager : MonoBehaviour
         endGameSystems();
     }
 
-    private void Start()
-    {
-        endGameSystems += ScoreManager.Instance.SetHighScore;
-        endGameSystems += SceneManager.ResetScene;
-    }
 
     private void OnDisable()
     {
@@ -25,6 +21,12 @@ public class GameManager : MonoBehaviour
         endGameSystems -= SceneManager.ResetScene;
     }
 
+    private void OnEnable()
+    {
+        GameManager.playerLevel = 0;
+        endGameSystems += ScoreManager.Instance.SetHighScore;
+        endGameSystems += SceneManager.ResetScene;
+    }
 
 
 
