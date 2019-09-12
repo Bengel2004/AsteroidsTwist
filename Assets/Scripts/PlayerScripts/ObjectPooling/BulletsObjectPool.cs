@@ -48,7 +48,7 @@ public class BulletsObjectPool : MonoBehaviour
     public GameObject GetNext(int _level)
     {
         GameObject obj = pool[_level].bullets[currentIndex];
-        currentIndex = ++currentIndex % pool.Count;
+        currentIndex = ++currentIndex % pool[_level].bullets.Count;
         obj.SetActive(true);
         return obj;
     }

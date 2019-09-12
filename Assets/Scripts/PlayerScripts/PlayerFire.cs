@@ -33,6 +33,7 @@ public class PlayerFire : MonoBehaviour
         GameObject _tempBullet = bulletPool.GetNext(_level);
         _tempBullet.transform.position = bulletSpawnPosition.position;
         _tempBullet.transform.rotation = bulletSpawnPosition.rotation;
+        _tempBullet.GetComponent<EntityMotion>().ApplyForwardForce();
         //GameObject _tempBullet = Instantiate(chosenWeapon.weaponEntity, bulletSpawnPosition.position, bulletSpawnPosition.rotation);
     }
 }
