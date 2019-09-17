@@ -7,7 +7,7 @@ public class EntityPlayer : Entity
     protected override void OnDeath()
     {
         base.OnDeath();
-        GameManager.OnReset();
+        GameManager.Instance.OnDeath();
     }
 
     // Resets game level on death

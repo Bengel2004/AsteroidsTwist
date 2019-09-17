@@ -25,15 +25,18 @@ public class PlayerLeveler : MonoBehaviour
 
     private void Update()
     {
-        // checks the current "level" of the player based on the amount of scrap he has collected
-        int _tempFloat = Mathf.RoundToInt(scrap);
-        _tempFloat = _tempFloat / levelSpriteChangeModifier;
-        
-        GameManager.playerLevel = _tempFloat < levelSprites.Length ? _tempFloat : (levelSprites.Length - 1);
-        if (playerSpriteRenderer.sprite != levelSprites[GameManager.playerLevel] && GameManager.playerLevel < levelSprites.Length)
+        if (GameManager.Instance.gameIsPlaying)
         {
-            playerSpriteRenderer.sprite = levelSprites[GameManager.playerLevel];
-            playerGunner.chosenWeapon = allWeapons[GameManager.playerLevel];
+            // checks the current "level" of the player based on the amount of scrap he has collected
+            int _tempFloat = Mathf.RoundToInt(scrap);
+            _tempFloat = _tempFloat / levelSpriteChangeModifier;
+
+            GameManager.Instance.playerLevel = _tempFloat < levelSprites.Length ? _tempFloat : (levelSprites.Length - 1);
+            if (playerSpriteRenderer.sprite != levelSprites[GameManager.Instance.playerLevel] && GameManager.Instance.playerLevel < levelSprites.Length)
+            {
+                playerSpriteRenderer.sprite = levelSprites[GameManager.Instance.playerLevel];
+                playerGunner.chosenWeapon = allWeapons[GameManager.Instance.playerLevel];
+            }
         }
     }
 

@@ -18,11 +18,14 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (GameManager.Instance.gameIsPlaying)
         {
-            if (Time.time > timestamp)
+            if (Input.GetKey(KeyCode.Space))
             {
-                Fire(GameManager.playerLevel);
+                if (Time.time > timestamp)
+                {
+                    Fire(GameManager.Instance.playerLevel);
+                }
             }
         }
     }

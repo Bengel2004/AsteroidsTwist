@@ -48,10 +48,13 @@ public class ObjectPooler : MonoBehaviour
     {
         GameObject obj = pool[_value].nesting[currentIndex];
         currentIndex = ++currentIndex % pool[_value].nesting.Count;
-        obj.SetActive(true);
-        // rotates obj items according to the pool
-        obj.transform.position =  _position;
-        obj.transform.rotation =  _rotation;
+        if (obj != null)
+        {
+            obj.SetActive(true);
+            // rotates obj items according to the pool
+            obj.transform.position = _position;
+            obj.transform.rotation = _rotation;
+        }
         return obj;
     }
 

@@ -19,35 +19,38 @@ public class EnemySpawner : MonoBehaviour
     }
 
     private void Update()
-    { 
-        if(Time.time > timestamp && thePlayer != null)
+    {
+        if(GameManager.Instance.gameIsPlaying)
         {
-            // Gets random position on the edges of the screen
-            float _randomX = Random.Range(-15, 15);
-            float _randomY = Random.Range(-9, 9);
-            if (_randomX > -8 && _randomX < 8)
-                return;
+            if (Time.time > timestamp && thePlayer != null)
+            {
+                // Gets random position on the edges of the screen
+                float _randomX = Random.Range(-15, 15);
+                float _randomY = Random.Range(-9, 9);
+                if (_randomX > -8 && _randomX < 8)
+                    return;
 
-            Vector3 _spawnPoint = new Vector3(_randomX, _randomY, 0f);
+                Vector3 _spawnPoint = new Vector3(_randomX, _randomY, 0f);
 
-            // Angles asteroid thorwards player
-            Vector2 _direction = thePlayer.transform.position - _spawnPoint;
-            float _angle = (Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg) - 90f;
-            Quaternion _tempRot = Quaternion.AngleAxis(_angle, Vector3.forward);
+                // Angles asteroid thorwards player
+                Vector2 _direction = thePlayer.transform.position - _spawnPoint;
+                float _angle = (Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg) - 90f;
+                Quaternion _tempRot = Quaternion.AngleAxis(_angle, Vector3.forward);
 
-            // Spawns large asteroid when the % is smaller than 20, if percentage is larger than 20 then spawn small asteroid
-            int _randomInt = Random.Range(0, 100) < LARGEASTEROIDSPAWNCHANCE ? 1 : 0;
-            //if(_randomInt < 20)
-            //{
-            //    _chosenInt = 1;
-            //}
-            //else
-            //{
-            //    _chosenInt = 0;
-            //}
+                // Spawns large asteroid when the % is smaller than 20, if percentage is larger than 20 then spawn small asteroid
+                int _randomInt = Random.Range(0, 100) < LARGEASTEROIDSPAWNCHANCE ? 1 : 0;
+                //if(_randomInt < 20)
+                //{
+                //    _chosenInt = 1;
+                //}
+                //else
+                //{
+                //    _chosenInt = 0;
+                //}
 
-            asteroidSpawnPool.GetNext(_randomInt, _spawnPoint, _tempRot);
-            timestamp = Time.time + spawnTime;
+                asteroidSpawnPool.GetNext(_randomInt, _spawnPoint, _tempRot);
+                timestamp = Time.time + spawnTime;
+            }
         }
     }
 
