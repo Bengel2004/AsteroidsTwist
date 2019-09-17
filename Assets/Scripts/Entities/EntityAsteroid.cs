@@ -15,18 +15,21 @@ public class EntityAsteroid : Entity
     protected override void OnDeath()
     {
         base.OnDeath();
-        switch (typeOfEntity)
+        if (lastCollidedType != EntityType.Asteroid && lastCollidedType != EntityType.LargeAsteroid)
         {
-            case EntityType.Asteroid:
-                ScoreManager.Instance.addPoint(1f);
-                scrapPointsPool.GetNext(0, transform.position, transform.rotation);
-                break;
-            case EntityType.LargeAsteroid:
-                ScoreManager.Instance.addPoint(2f);
-                scrapPointsPool.GetNext(1, transform.position, transform.rotation);
-                break;
-            default:
-                break;
+            switch (typeOfEntity)
+            {
+                case EntityType.Asteroid:
+                    ScoreManager.Instance.addPoint(1f);
+                    scrapPointsPool.GetNext(0, transform.position, transform.rotation);
+                    break;
+                case EntityType.LargeAsteroid:
+                    ScoreManager.Instance.addPoint(2f);
+                    scrapPointsPool.GetNext(1, transform.position, transform.rotation);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

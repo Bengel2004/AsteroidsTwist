@@ -11,14 +11,12 @@ public class GameManager : MonoBehaviour
 
     public static void OnReset()
     {
-        endGameSystems();
+        endGameSystems.Invoke();
     }
 
-
-    private void OnDisable()
+    private void Start()
     {
-        endGameSystems -= ScoreManager.Instance.SetHighScore;
-        endGameSystems -= SceneManager.ResetScene;
+        SceneManager = GetComponent<SceneLoader>();
     }
 
     private void OnEnable()
@@ -28,7 +26,9 @@ public class GameManager : MonoBehaviour
         endGameSystems += SceneManager.ResetScene;
     }
 
-
-
-
+    private void OnDisable()
+    {
+        endGameSystems -= ScoreManager.Instance.SetHighScore;
+        endGameSystems -= SceneManager.ResetScene;
+    }
 }

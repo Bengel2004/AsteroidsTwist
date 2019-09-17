@@ -8,19 +8,19 @@ public class PlayerLeveler : MonoBehaviour
     [SerializeField]
     private Sprite[] levelSprites;
     [SerializeField]
-    private Weapon[] allWeapons;
+    private Projectile[] allWeapons;
     [SerializeField]
     private SpriteRenderer playerSpriteRenderer;
     [SerializeField]
     private int levelSpriteChangeModifier;
 
     private float scrap;
-    private PlayerFire playerGunner;
+    private Weapon playerGunner;
 
     // Manages the current sprite progress of the player
     private void Start()
     {
-        playerGunner = GetComponent<PlayerFire>();
+        playerGunner = GetComponent<Weapon>();
     }
 
     private void Update()

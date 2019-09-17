@@ -48,6 +48,21 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+
+        Vector3 _tempLeft = cam.ScreenToWorldPoint(new Vector3(0, 0, cam.nearClipPlane));
+        Vector3 _tempRight = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth, cam.pixelHeight, cam.nearClipPlane));
+        if (transform.position.x > _tempRight.x || transform.position.x < _tempLeft.x)
+        {
+            Vector3 _tempPlayerPos = transform.position;
+            _tempPlayerPos.x = -_tempPlayerPos.x;
+            transform.position = _tempPlayerPos;
+        }
+        if (transform.position.y > _tempRight.y || transform.position.y < _tempLeft.y)
+        {
+            Vector3 _tempPlayerPos = transform.position;
+            _tempPlayerPos.y = -_tempPlayerPos.y;
+            transform.position = _tempPlayerPos;
+        }
     }
     // Player thrust
     private void FixedUpdate()

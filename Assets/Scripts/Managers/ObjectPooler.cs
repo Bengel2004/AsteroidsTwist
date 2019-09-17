@@ -26,7 +26,6 @@ public class ObjectPooler : MonoBehaviour
             pool.Add(_temp);
         }
 
-        Debug.Log(pool.Count + " POOL COUNT");
         // pool[currentIndex] = new List<GameObject>(size);
         ObjectPool(size);
     }
@@ -61,7 +60,7 @@ public class ObjectPooler : MonoBehaviour
         GameObject obj = Object.Instantiate(prefabs[spawnIndex]);
         obj.SetActive(false);
         obj.transform.SetParent(transform);
-        pool[spawnIndex].nesting.Add(obj);
+        pool[spawnIndex].nesting.Add(obj);  
     }
 }
 [System.Serializable]

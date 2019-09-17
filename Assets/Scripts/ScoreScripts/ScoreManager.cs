@@ -44,7 +44,8 @@ public class ScoreManager : MonoBehaviour
     }
 
     // creates  a singleton instance of the object
-    private void Awake() { 
+    private void Awake()
+    { 
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
