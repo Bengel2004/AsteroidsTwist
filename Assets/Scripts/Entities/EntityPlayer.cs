@@ -19,4 +19,13 @@ public class EntityPlayer : Entity
             OnDeath();
         }
     }
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+        if (collision.transform.gameObject)
+        {
+            CameraShake.OnShake?.Invoke();
+        }
+    }
 }

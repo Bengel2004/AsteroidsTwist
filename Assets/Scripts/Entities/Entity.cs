@@ -13,9 +13,9 @@ public class Entity : MonoBehaviour
     protected float health;
     [SerializeField]
     protected EntityType typeOfEntity;
-    protected EntityType lastCollidedType;
+    public EntityType lastCollidedType;
 
-    protected ObjectPooler SmokePool;
+    protected ObjectPooler smokePool;
 
     // checks if entity is damaged
     public virtual void DamageEntity(float damagePoints)
@@ -29,16 +29,16 @@ public class Entity : MonoBehaviour
 
     protected virtual void Awake()
     {
-        SmokePool = GameObject.Find("SmokePool").GetComponent<ObjectPooler>();
+        smokePool = GameObject.Find("SmokePool").GetComponent<ObjectPooler>();
     }
 
     protected virtual void OnDeath()
     {
-        SmokePool.GetNext(0, transform.position, transform.rotation);
+        smokePool.GetNext(0, transform.position, transform.rotation);
     }
 
     // Detects colission with objects
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.gameObject)
         { 

@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
 
     public bool gameIsPlaying = false;
     public int playerLevel;
-    public static System.Action endGameSystems;
+    public delegate void GameSystems();
+    GameSystems endGameSystem;
 
     public void OnDeath()
     {
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     public void OnReset()
     {
-        endGameSystems.Invoke();
+        endGameSystem.Invoke();
     }
 
     public void MainMenu()
@@ -66,14 +67,14 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         GameManager.Instance.playerLevel = 0;
-        endGameSystems += ScoreManager.Instance.SetHighScore;
-        endGameSystems += sceneManager.ResetScene;
+        endGameSystem += ScoreManager.Instance.SetHighScore;
+        endGameSystem += sceneManager.ResetScene;
     }
 
     private void OnDisable()
     {
-        endGameSystems -= ScoreManager.Instance.SetHighScore;
-        endGameSystems -= sceneManager.ResetScene;
+        endGameSystem -= ScoreManager.Instance.SetHighScore;
+        endGameSystem -= sceneManager.ResetScene;
     }
 
 
